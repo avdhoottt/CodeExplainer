@@ -20,17 +20,16 @@ export const CodeExplainer = () => {
     const [input, setInput] = useState('');
     const [explanation, setExplanation] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     const explainCode = async () => {
-        setError('');
+
         if(input.trim() === '') {
             setExplanation("Input is empty");
             return;
         }
         setLoading(true);
         try {
-            const genAi = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+            const genAi = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || "");
             const model = genAi.getGenerativeModel({ model: "gemini-pro" });
             const prompt = `Explain this code in the following format. The explanation should be easy to understand and simple, use real world examples to explain the code:
 
@@ -45,7 +44,6 @@ export const CodeExplainer = () => {
             setExplanation(res.response.text);
         } catch (error) {
             console.error('Error explaining code:', error);
-            setError('Failed to load');
         } finally {
             setLoading(false);
         }
@@ -55,7 +53,6 @@ export const CodeExplainer = () => {
     const resetAllValues = () => {
         setExplanation('');
         setInput('');
-        setError('');
         setLoading(false);
     };
 
