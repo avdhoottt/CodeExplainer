@@ -29,7 +29,7 @@ export const CodeExplainer = () => {
         }
         setLoading(true);
         try {
-            const genAi = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY!.toString());
+            const genAi = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || "");
             const model = genAi.getGenerativeModel({ model: "gemini-pro" });
             const prompt = `Explain this code in the following format. The explanation should be easy to understand and simple, use real world examples to explain the code:
 
