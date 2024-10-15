@@ -4,7 +4,6 @@ import React from 'react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { GoogleGenerativeAI } from '@google/generative-ai'
-import ReactMarkdown from 'react-markdown';
 import { debounce } from 'lodash'
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import Spinner from './Spinner'
