@@ -20,10 +20,9 @@ export const CodeExplainer = () => {
     const [input, setInput] = useState('');
     const [explanation, setExplanation] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     const explainCode = async () => {
-        setError('');
+
         if(input.trim() === '') {
             setExplanation("Input is empty");
             return;
@@ -45,7 +44,6 @@ export const CodeExplainer = () => {
             setExplanation(res.response.text);
         } catch (error) {
             console.error('Error explaining code:', error);
-            setError('Failed to load');
         } finally {
             setLoading(false);
         }
@@ -55,7 +53,6 @@ export const CodeExplainer = () => {
     const resetAllValues = () => {
         setExplanation('');
         setInput('');
-        setError('');
         setLoading(false);
     };
 
